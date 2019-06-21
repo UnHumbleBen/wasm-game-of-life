@@ -1,5 +1,5 @@
 /* eslint-disable no-bitwise */
-import { Universe, Cell } from 'wasm-game-of-life';
+import { Universe } from 'wasm-game-of-life';
 
 // Import the WebAssembly memory at the top of the file.
 import { memory } from 'wasm-game-of-life/wasm_game_of_life_bg';
@@ -62,7 +62,7 @@ const drawCells = () => {
     for (let col = 0; col < width; col += 1) {
       const idx = getIndex(row, col);
 
-      ctx.fillStyle = cells[idx] === Cell.Dead
+      ctx.fillStyle = bitIsSet(idx, cells)
         ? DEAD_COLOR
         : ALIVE_COLOR;
 
