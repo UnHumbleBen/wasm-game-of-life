@@ -63,8 +63,8 @@ const drawCells = () => {
       const idx = getIndex(row, col);
 
       ctx.fillStyle = bitIsSet(idx, cells)
-        ? DEAD_COLOR
-        : ALIVE_COLOR;
+        ? ALIVE_COLOR
+        : DEAD_COLOR;
 
       ctx.fillRect(
         col * (CELL_SIZE + 1) + 1,
