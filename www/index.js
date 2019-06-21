@@ -70,6 +70,11 @@ const drawCells = () => {
   ctx.stroke();
 };
 
+let animationId = null;
+
+// This function is the same as before, except the
+// result of `requestAnimationFrame` is assigned to
+// `animationId`.
 const renderLoop = () => {
   // eslint-disable-next-line no-debugger
   debugger;
@@ -78,9 +83,33 @@ const renderLoop = () => {
   drawGrid();
   drawCells();
 
-  requestAnimationFrame(renderLoop);
+  animationId = requestAnimationFrame(renderLoop);
 };
+
+const isPaused = () => animationId === null;
+
+const playPauseButton = document.getElementById('play-pause');
+
+const play = () => {
+  playPauseButton.textContent = '▌▌';
+  renderLoop();
+};
+
+const pause = () => {
+  playPauseButton.textContent = '▶';
+  cancelAnimationFrame(animationId);
+  animationId = null;
+};
+
+playPauseButton.addEventListener('click', () => {
+  if (isPaused()) {
+    play();
+  } else {
+    pause();
+  }
+});
 
 drawGrid();
 drawCells();
-requestAnimationFrame(renderLoop);
+// This used to be `requestAnimationFrame(renderLoop)`.
+play();
