@@ -20,6 +20,11 @@ extern {
 }
 
 #[wasm_bindgen]
-pub fn greet(name: &str) {
-    alert(&format!("Hello, {}!", name));
+#[repr(u8)]  // Represents each cell as a single byte.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Cell {
+    // Represent Dead as 0 and Alive as 1 to
+    // allow for easy counting of live cells.
+    Dead = 0,
+    Alive = 1,
 }
