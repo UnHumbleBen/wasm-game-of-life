@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 import { Universe, Cell } from 'wasm-game-of-life';
 
 // Import the WebAssembly memory at the top of the file.
@@ -42,9 +43,18 @@ const drawGrid = () => {
 
 const getIndex = (row, column) => row * width + column;
 
+// Determines if the @nth bit in @arr is set.
+const bitIsSet = (n, arr) => {
+  const byte = Math.floor(n / 8);
+  const mask = 1 << (n % 8);
+  return (arr[byte] & mask) === mask;
+};
+
 const drawCells = () => {
   const cellsPtr = universe.cells();
-  const cells = new Uint8Array(memory.buffer, cellsPtr, width * height);
+  // The length of the array is width * height / 8 because each cell is stored
+  // in a bit instead of a byte.
+  const cells = new Uint8Array(memory.buffer, cellsPtr, width * height / 8);
 
   ctx.beginPath();
 
