@@ -15,12 +15,12 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 // Imports the `window.alert` function from the Web.
 #[wasm_bindgen]
-extern {
+extern "C" {
     fn alert(s: &str);
 }
 
 #[wasm_bindgen]
-#[repr(u8)]  // Represents each cell as a single byte.
+#[repr(u8)] // Represents each cell as a single byte.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Cell {
     // Represent Dead as 0 and Alive as 1 to
@@ -133,7 +133,7 @@ impl fmt::Display for Universe {
                 let symbol = if cell == Cell::Dead { '◻' } else { '◼' };
                 write!(f, "{}", symbol)?;
             }
-            write!(f,"\n")?;
+            write!(f, "\n")?;
         }
 
         Ok(())
