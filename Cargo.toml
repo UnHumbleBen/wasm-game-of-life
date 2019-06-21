@@ -3,6 +3,9 @@ name = "wasm-game-of-life"
 version = "0.1.0"
 authors = ["Benjamin Lee <bnllee@ucdavis.edu>"]
 edition = "2018"
+description = "Learning Rust and WebAssembly"
+repository = "https://github.com/UnHumbleBen/wasm-game-of-life"
+license = "APACHE, MIT"
 
 [lib]
 # Initialized for generating .wasm libraries.
