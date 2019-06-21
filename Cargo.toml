@@ -5,6 +5,7 @@ authors = ["Benjamin Lee <bnllee@ucdavis.edu>"]
 edition = "2018"
 
 [lib]
+# Initialized for generating .wasm libraries.
 crate-type = ["cdylib", "rlib"]
 
 [features]
