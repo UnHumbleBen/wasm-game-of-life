@@ -71,6 +71,8 @@ const drawCells = () => {
 };
 
 const renderLoop = () => {
+  // eslint-disable-next-line no-debugger
+  debugger;
   universe.tick();
 
   drawGrid();
